@@ -30,10 +30,11 @@ export default class TodoList extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {list: props.list};
+    this.state = {list: [] , date:""};
 
     this.handleAddTask = this.handleAddTask.bind(this);
     this.handleDeleteTask = this.handleDeleteTask.bind(this);
+    this.handleCheckTask = this.handleCheckTask.bind(this);
   }
   handleAddTask(task) {
     // need to push the task into the list
@@ -55,7 +56,7 @@ export default class TodoList extends React.Component {
     this.setState({list:compList});
   }
   listt() {
-    return this.state.list.map((t,c) => {
+    return this.state.list.map((t,i) => {
       return (
         <ScrollView>
           <CheckBox title = {"TASK:"+t.name + ", DueDate :" + (t.date)}
@@ -63,7 +64,6 @@ export default class TodoList extends React.Component {
           <Button title = "DELETE TASK" onPress= {() => this.handleDeleteTask(t.id)} /> 
         </ScrollView>
       )
-
     })
   }
 
@@ -88,7 +88,6 @@ export default class TodoList extends React.Component {
     );
       
   }
-
 }
 
 export class TaskNameForm extends React.Component {
